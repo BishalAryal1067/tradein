@@ -120,7 +120,7 @@ function ValidateUser() {
         }
     }
     catch (err) {
-        alert(err)
+        alert('Something went wrong!');
     }
 }
 
