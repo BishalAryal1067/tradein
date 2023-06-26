@@ -129,7 +129,7 @@ let expirationDate = new Date();
 let daysToLive;
 
 function Signin(user) {
-    console.log(expirationDate.getTime().toString())
+    alert('clicked');
     userCredentials.rememberMe ? daysToLive = 60 * 60 * 24 * 1000 * 30 : daysToLive = 60 * 60 * 24 * 1000;
     expirationDate.setTime(expirationDate.getTime() + daysToLive);
     document.cookie = `${true}; expires = ${expirationDate.toUTCString()};SameSite=None;`;
@@ -148,7 +148,7 @@ onMounted(() => {
     }
 })
 
-console.log(Boolean(document.cookie))
+
 
 </script>
 

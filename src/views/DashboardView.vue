@@ -1,5 +1,5 @@
 <template>
-  <DashboardHeader v-on:logout="LogoutUser"/>
+  <DashboardHeader v-on:logout="LogoutUser" />
   <AddOrganization>
     <div id="organization-list" v-if="organizationList" class="w-full flex flex-col">
       <div v-for="(organization, index) in listByCurrentUser" :key="index" class="list-items w-full box-border px-[1.125rem] py-[1.5rem]
@@ -45,18 +45,21 @@ onMounted(() => {
   }
 })
 
-const organizationList = Object.values(JSON.parse(localStorage.getItem('organizationData')));
-let listByCurrentUser = organizationList.filter(organization => {
-  if (organization.createdBy == store.currentUserId) {
-    return organization
-  }
-})
+let organizationList;
+JSON.parse(localStorage.getItem('organizationData')) ?
+  organizationList = Object.values(JSON.parse(localStorage.getItem('organizationData'))) : organizationList = [];
 
-function LogoutUser(){
-  store.currentUser = {}
-  localStorage.removeItem('currentUser')
-  router.push("/")
-}
+let listByCurrentUser = organizationList.filter(organization => {
+    if (organization.createdBy == store.currentUserId) {
+      return organization
+    }
+  })
+
+function LogoutUser() {
+    store.currentUser = {}
+    localStorage.removeItem('currentUser')
+    router.push("/")
+  }
 
 </script>
 
