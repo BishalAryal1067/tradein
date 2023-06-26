@@ -1,6 +1,6 @@
 <template>
     <div id="page-wrapper" class="w-screen max-h-screen overflow-y-hidden">
-        <DashboardHeader />
+        <DashboardHeader v-on:logout="LogoutUser" />
         <div id="content-wrapper" class="flex justify-between gap-[1rem]">
             <SideBar :current-step="2" class="w-1/3" />
             <div id="form-section" class="relative bg-grey-7 w-2/3 pt-[7.5rem] pl-[7.5rem]">
@@ -136,6 +136,13 @@ function submitForm() {
     store.addOrganizationData(organizationData);
     store.organizationData = [];
     router.push('/dashboard')
+}
+
+
+function LogoutUser() {
+    store.currentUser = {}
+    localStorage.removeItem('currentUser')
+    router.push("/")
 }
 
 
